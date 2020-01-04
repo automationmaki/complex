@@ -18,3 +18,15 @@ after_success:
     - docker push makish/multi-nginx
     - docker push makish/multi-server
     - docker push makish/multi-worker
+
+deploy: 
+    provider: elastikbeanstalk
+    region: europe-1
+    app: multi-docker
+    env: MutliDocker-env
+    bucket_name: elastikbeanstalk-eu-east-306476627547
+    bucket_path: docker-multi
+    on:
+        branch: master
+        access_key_id: $AWS_ACCESS_KEY
+        secret_access_key: $AWS_SECRET_KEY
